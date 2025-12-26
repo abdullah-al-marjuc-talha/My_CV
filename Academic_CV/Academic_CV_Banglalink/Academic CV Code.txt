@@ -1,0 +1,404 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Abdullah Al Marjuc Talha's CV},
+    pdfauthor={Abdullah Al Marjuc Talha},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Abdullah Al MArjuc Talha - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{}\hspace{\widthof{}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Abdullah Al Marjuc Talha}
+
+        \vspace{0.3 cm}
+
+        \normalsize
+        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}Bashundhara R/A, Block: F, Road: 20}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:talhakawser2909@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}talhakawser2909@gmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{tel:+8801731516067}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}+880 1731 516067}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://linkedin.com/in/abdullah-al-marjuc-talha-b4032a194}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}ABDULLAH AL MARJUC TALHA}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://github.com/abdullah-al-marjuc-talha}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}Abdullah Al Marjuc Talha}}%
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+
+    \section{ SUMMARY}
+
+
+
+        
+        \begin{onecolentry}
+
+            Final-year Computer Science student with a strong foundation in data analytics and digital business operations. Co-founder of an e-commerce venture with practical experience in logistics and customer relationship management. Aligned with Banglalink’s vision to "Lead the Future", seeking to leverage skills in SQL, Power BI, and User Acceptance Testing (UAT) to drive innovation and digital transformation as a Digitalyst Intern.
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+    \section{Education}
+        
+        \begin{twocolentry}{
+            
+            
+        \textit{JAN 2022 – PRESENT}}
+            \textbf{AMERICAN INTERNATIONAL UNIVERSITY – BANGLADESH}
+
+            \textit{BSc in Computer Science and Engineering (Major: Information Systems) }
+        \end{twocolentry}
+
+        \begin{onecolentry}
+            \begin{highlights}
+                \item CGPA: 2.95 / 4.00
+                \item Status: Completing all academic courses in the current semester (Final Semester).
+                \item Awards: Best Poster Award (Software Category), Thesis Day 2025.
+                \item Relevant Modules: Data Science, Research Methodology, Software Quality Assurance (SQA), Management Information Systems.
+                
+            \end{highlights}
+        \end{onecolentry}
+        \vspace{0.20 cm}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{2018 – 2020}}
+            \textbf{CANTONMENT PUBLIC SCHOOL AND COLLEGE MOMENSHAHI}
+
+            \textit{Higher School Certificate (Science) }
+        \end{twocolentry}
+            \vspace{0.20 cm}
+
+        \section{LEADERSHIP \& EXPERIENCE}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{
+        \textit{Dhaka}    
+            
+        \textit{JULY 2023 - PRESENT}}
+            \textbf{Co-Founder}
+            
+            \textit{Prime Corner - Online Clothing Business}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+              Established and managed a digital-first retail business, overseeing end-to-end operations from procurement to delivery.
+              Utilized data analytics to track inventory turnover and sales trends, ensuring optimized stock levels and reduced overhead.
+              Maintained a "customer-first" approach, resolving inquiries and coordinating logistics to ensure a seamless delivery experience.
+            \end{highlights}
+        \end{onecolentry}
+        
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{
+        \textit{Dhaka}    
+            
+        \textit{JUNE 2025 - PRESENT}}
+            \textbf{Executive – Strategic Member}
+            
+            \textit{ESAB AIUB Unit Face}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                Lead strategic planning for club initiatives and manage web-based platforms to enhance student engagement.
+
+                Previously served as a volunteer (2023–2025), organizing technical workshops and large-scale events to foster student innovation.
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{
+        \textit{Dhaka}    
+            
+        \textit{JULY 2025 - PRESENT}}
+            \textbf{Crew Facilitator}
+            
+            \textit{Space Innovation Camp}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+               Coordinated logistics and team activities for large-scale participant events, ensuring operational efficiency.
+               Managed participant registration and on-site communication, acting as a primary point of contact for attendees.
+            \end{highlights}
+        \end{onecolentry}
+
+        \begin{twocolentry}{
+        \textit{Dhaka}    
+            
+        \textit{JUNE 2023 – JUNE 2024}}
+            \textbf{Former General Member }
+            
+            \textit{AIUB Environment Club}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                I worked with the AIUB Environment Club to raise awareness about environmental protection.
+            \end{highlights}
+        \end{onecolentry}
+
+ \vspace{0.2 cm}
+
+        \begin{onecolentry}{
+            \textbf{Volunteering Experience }}
+        \end{onecolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item The Second Space Exploration Olympiad as a Crew Facilitator on 01 August 2025.
+
+                \item Research Assistant, ADPC-ICARE Innovation Fund Project, 2024.
+            \end{highlights}
+        \end{onecolentry}
+
+            \section{Academic Projects}
+
+        \begin{twocolentry}{
+                
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/Thesis-Summer-24-25}{GitHub}}}
+            \textbf{i. Real-Time Multimodal Confidence Detection System(Thesis Project) }
+        \end{twocolentry}
+        \vspace{0.10 cm}
+
+        \begin{twocolentry}{
+                
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/DSML2506/tree/main/mobile_project}{GitHub}}}
+            \textbf{ii. Mobile Analytics Data Warehouse \& Market Analysis}
+        \end{twocolentry}
+        \vspace{0.10 cm}
+
+
+        \begin{twocolentry}{
+                
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/Library_Managements}{GitHub}}}
+            \textbf{iii. Library Management System (SQA Focus)}
+        \end{twocolentry}
+            \vspace{0.10 cm}
+        \begin{twocolentry}{
+                
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/Pharma_Care_Portal_management}{GitHub}}}
+            \textbf{iv. Pharma Care Portal Management}
+        \end{twocolentry}
+        \vspace{0.10 cm}
+        
+        \begin{twocolentry}{
+                
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/IDS_Fall_25-26/tree/main/Class_Work/MID/Mid_Project/ANALYSIS_AND_PREPROCESSING_OF_NETWORK_TRAFFIC_FOR_CYBERSECURITY}{GitHub}}}
+            \textbf{v. Analysis and Preprocessing of Network Traffic for Cybersecurity}
+        \end{twocolentry}
+        \vspace{0.2 cm}
+
+        \section{Skills}
+
+
+        \begin{onecolentry}
+            \textbf{Technical Skills:}         
+            \begin{highlights}
+                \item Data \& Analysis: SQL (Window Functions, CTEs), Power BI, R, Python, MS Excel.
+                
+                \item Programming, Web \& Testing: C++, Java, HTML, CSS, PHP, Selenium IDE (Automation), User Acceptance Testing (UAT), SDLC.
+
+            \end{highlights}
+        \end{onecolentry}
+    
+    \section{Certifications}
+
+         \begin{twocolentry}{          
+            
+        \textit{JAN 2022 – PRESENT}}
+        \textbf{Cisco Networking Academy program}
+    \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item IT Essentials: PC Hardware and Software.
+                \item Data Analytics Essentials.  
+            \end{highlights}
+        \end{onecolentry}
+        
+
+        \href{https://drive.google.com/drive/folders/1LpCYNaI5eKJA6UpGPCV_RlUjxRt4akO2}{\faGoogleDrive \ \textbf{Link to All Certificates}}
+        
+
+
+    
+    % \section{Reference}
+    %
+    % \textbf{Dr. Sazzad Hossain} \\
+    % \textit{[Designation]} \\
+    % Thesis Supervisor \\
+    % Dept. of Computer Science, AIUB \\
+    % \href{mailto:ADD_EMAIL_HERE}{ADD_EMAIL_HERE}
+
+
+\end{document}
