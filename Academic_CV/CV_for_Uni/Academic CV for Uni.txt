@@ -1,0 +1,298 @@
+\documentclass[10pt, letterpaper]{article}
+
+% --- PACKAGES ---
+\usepackage[
+    ignoreheadfoot, 
+    top=2 cm, 
+    bottom=2 cm, 
+    left=2 cm, 
+    right=2 cm, 
+    footskip=1.0 cm, 
+]{geometry} 
+
+\usepackage{titlesec} 
+\usepackage{tabularx} 
+\usepackage{array} 
+\usepackage[dvipsnames]{xcolor} 
+\definecolor{primaryColor}{RGB}{0, 79, 144} 
+\usepackage{enumitem} 
+\usepackage{fontawesome5} 
+\usepackage{amsmath} 
+\usepackage{graphicx} % REQUIRED FOR IMAGES
+
+\usepackage[
+    pdftitle={Abdullah Al Marjuc Talha's CV},
+    pdfauthor={Abdullah Al Marjuc Talha},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} 
+
+\usepackage[pscoord]{eso-pic} 
+\usepackage{calc} 
+\usepackage{bookmark} 
+\usepackage{lastpage} 
+\usepackage{changepage} 
+\usepackage{paracol} 
+\usepackage{ifthen} 
+\usepackage{needspace} 
+\usepackage{iftex} 
+
+% Check PDF engine
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+% --- SETTINGS ---
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} 
+\pagestyle{empty} 
+\setcounter{secnumdepth}{0} 
+\setlength{\parindent}{0pt} 
+\setlength{\topskip}{0pt} 
+\setlength{\columnsep}{0cm} 
+
+% Custom Footer
+\makeatletter
+\let\ps@customFooterStyle\ps@plain 
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Abdullah Al Marjuc Talha - Page \thepage{} of \pageref*{LastPage}}
+}{}{} 
+\makeatother
+\pagestyle{customFooterStyle}
+
+% Section formatting
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titlespacing{\section}{-1pt}{0.3 cm}{0.2 cm}
+
+% Custom commands
+\renewcommand\labelitemi{$\circ$} 
+\newenvironment{highlights}{
+    \begin{itemize}[topsep=0.10 cm, parsep=0.10 cm, partopsep=0pt, itemsep=0pt, leftmargin=0.4 cm + 10pt]
+}{\end{itemize}}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0.2 cm + 0.00001 cm}{0.2 cm + 0.00001 cm}
+}{\end{adjustwidth}}
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+% Link helper
+\let\hrefWithoutArrow\href
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    % --- HEADER START ---
+    \begin{center}
+        % LEFT COLUMN: PICTURE
+        % [c] vertically centers the image relative to the text block
+        \begin{minipage}[c]{0.22\textwidth} 
+            % MAKE SURE YOUR FILE IS NAMED photo.jpg IN OVERLEAF
+            \includegraphics[width=3cm, keepaspectratio]{Abdullah_Al_Marjuc_Talha_22-47294-1.jpg} 
+        \end{minipage}% <--- DO NOT REMOVE THIS PERCENT SIGN
+        \hfill
+        % RIGHT COLUMN: NAME & DETAILS
+        \begin{minipage}[c]{0.75\textwidth} 
+            \raggedright
+            \textbf{\fontsize{24 pt}{24 pt}\selectfont Abdullah Al Marjuc Talha}
+
+            \vspace{0.3 cm}
+
+            \normalsize
+            \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}Bashundhara R/A, Block: F, Road: 20}%
+            \kern 0.25 cm%
+            \AND%
+            \kern 0.25 cm%
+            \\ \mbox{\hrefWithoutArrow{mailto:talhakawser2909@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}talhakawser2909@gmail.com}}%
+            \kern 0.25 cm%
+            \AND%
+            \kern 0.25 cm%
+            \mbox{\hrefWithoutArrow{tel:+8801731516067}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}+880 1731 516067}}%
+            
+            \vspace{0.1 cm} 
+
+            \mbox{\hrefWithoutArrow{https://linkedin.com/in/abdullah-al-marjuc-talha-b4032a194}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}ABDULLAH AL MARJUC TALHA}}%
+            \kern 0.25 cm%
+            \AND%
+            \kern 0.25 cm%
+            \mbox{\hrefWithoutArrow{https://github.com/abdullah-al-marjuc-talha}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}Abdullah Al Marjuc Talha}}%
+        \end{minipage}
+    \end{center}
+    % --- HEADER END ---
+
+    \vspace{0.1cm}
+
+    \section{Summary}
+    \begin{onecolentry}
+        Final-semester Computer Science and Engineering student specializing in Information Systems. Recently defended undergraduate thesis on 'Real-Time Multimodal Confidence Detection,' achieving the Best Poster Award (Software Category) at Thesis Day 2025. Proficient in \textbf{Data Science, MIS, and SQA}, with a strong track record in academic research and leadership within university organizations.
+    \end{onecolentry}
+
+    \section{Education}
+    \begin{twocolentry}{
+        \textit{JAN 2022 – PRESENT}}
+        \textbf{AMERICAN INTERNATIONAL UNIVERSITY – BANGLADESH}
+
+        \textit{BSc in Computer Science and Engineering (Major: Information Systems)}
+    \end{twocolentry}
+
+    \begin{onecolentry}
+        \begin{highlights}
+            \item CGPA: 2.95 / 4.00
+            \item Status: Completing all academic courses in the current semester (Final Semester).
+            \item Awards: Best Poster Award (Software Category), Thesis Day 2025.
+            \item Relevant Modules: Data Science, Research Methodology, Software Quality Assurance (SQA), Management Information Systems.
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.20 cm}
+
+    \begin{twocolentry}{
+        \textit{2018 – 2020}}
+        \textbf{CANTONMENT PUBLIC SCHOOL AND COLLEGE MOMENSHAHI}
+
+        \textit{Higher School Certificate (Science)}
+    \end{twocolentry}
+
+    \section{Leadership \& Experience}
+
+    \begin{twocolentry}{
+        \textit{Dhaka} \hfill \textit{JULY 2023 - PRESENT}}
+        \textbf{Co-Founder}
+        \textit{Prime Corner - Online Clothing Business}
+    \end{twocolentry}
+    \begin{onecolentry}
+        \begin{highlights}
+             \item Established and managed a digital-first retail business, overseeing end-to-end operations from procurement to delivery.
+             \item Utilized data analytics to track inventory turnover and sales trends, ensuring optimized stock levels.
+        \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.2 cm}
+
+    \begin{twocolentry}{
+        \textit{Dhaka} \hfill \textit{JUNE 2025 - PRESENT}}
+        \textbf{Executive – Strategic Member}
+        \textit{ESAB AIUB Unit Face}
+    \end{twocolentry}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Lead strategic planning for club initiatives and manage web-based platforms.
+            \item Previously served as a volunteer (2023–2025), organizing technical workshops and large-scale events.
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.2 cm}
+
+    \begin{twocolentry}{
+        \textit{Dhaka} \hfill \textit{JULY 2025 - PRESENT}}
+        \textbf{Crew Facilitator}
+        \textit{Space Innovation Camp}
+    \end{twocolentry}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Coordinated logistics and team activities for large-scale participant events.
+        \end{highlights}
+    \end{onecolentry}
+
+    \vspace{0.2 cm}
+
+    \begin{onecolentry}
+        \textbf{Volunteering Experience}
+    \end{onecolentry}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item The Second Space Exploration Olympiad as a Crew Facilitator on 01 August 2025.
+            \item Research Assistant, ADPC-ICARE Innovation Fund Project, 2024.
+        \end{highlights}
+    \end{onecolentry}
+
+    \section{Academic Projects}
+
+    \begin{twocolentry}{
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/Thesis-Summer-24-25}{GitHub}}}
+        \textbf{i. Real-Time Multimodal Confidence Detection System (Thesis Project)}
+            \begin{highlights}
+            \item Built a real-time system combining facial landmarks, hand gestures, and voice pitch to measure human confidence levels using Python, JavaScript \& MediaPipe.
+            \item Achieved 94.97\% accuracy through multimodal signal processing and optimized real-time performance.
+            \item Awarded Best Poster for effectively presenting complex research findings and visual data representation.
+            \end{highlights}
+    \end{twocolentry}
+    \vspace{0.10 cm}
+
+    \begin{twocolentry}{
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/DSML2506/tree/main/mobile_project}{GitHub}}}
+        \textbf{ii. Mobile Analytics Data Warehouse \& Market Analysis}
+            \begin{highlights}
+            \item Designed a normalized Star Schema architecture to transform raw smartphone data into structured Dimension and Fact tables, significantly improving query efficiency.
+            \item Utilized SQL Window Functions (ROW\_NUMBER, RANK) and CTEs to calculate market share, price-to-performance ratios, and multi-feature rankings.
+            \item Conducted comparative analysis on 980+ records to identify hardware correlations and pricing strategies across different operating systems.
+            \end{highlights}
+        
+    \end{twocolentry}
+    \vspace{0.10 cm}
+
+    \begin{twocolentry}{
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/Library_Managements}{GitHub}}}
+        \textbf{iii. Library Management System}
+        \begin{highlights}
+            \item Built a web-based system to manage book catalogs and member records.
+            \item QA Aspect: Performed functional testing on features like "issue/return tracking" and search functionality to ensure zero logic errors.
+            \item Database Testing: Validated MySQL database integrity to ensure accurate storage and retrieval of member records.
+        \end{highlights}
+    \end{twocolentry}
+    \vspace{0.10 cm}
+    
+    \begin{twocolentry}{
+        \textit{\href{https://github.com/abdullah-al-marjuc-talha/IDS_Fall_25-26}{GitHub}}}
+        \textbf{iv. Analysis and Preprocessing of Network Traffic for Cybersecurity}
+
+        \begin{highlights}
+            \item Processed raw packet-level data to identify anomalies and potential security threats using statistical analysis in R.
+            \item Performed rigorous data cleaning and feature extraction, handling missing values and filtering noise to prepare datasets for intrusion detection models.
+            \item Conducted Exploratory Data Analysis (EDA) using ggplot2 to visualize traffic patterns and detect malicious behavioral trends.
+            \end{highlights}
+    \end{twocolentry}
+
+    \section{Skills}
+    \begin{onecolentry}
+        \textbf{Technical Skills:}         
+        \begin{highlights}
+            \item Data \& Analysis: SQL (Window Functions, CTEs), Power BI, R, Python, MS Excel.
+            \item Programming, Web \& Testing: C++, Java, HTML, CSS, PHP, Selenium IDE, UAT, SDLC.
+        \end{highlights}
+    \end{onecolentry}
+    
+    \section{Certifications}
+    \begin{twocolentry}{          
+        \textit{JAN 2022 – PRESENT}}
+        \textbf{Cisco Networking Academy program}
+    \end{twocolentry}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item IT Essentials: PC Hardware and Software.
+            \item Data Analytics Essentials.  
+        \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.2cm}
+    \href{https://drive.google.com/drive/folders/1LpCYNaI5eKJA6UpGPCV_RlUjxRt4akO2}{\faGoogleDrive \ \textbf{Link to All Certificates}}
+
+\end{document}
